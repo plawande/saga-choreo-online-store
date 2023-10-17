@@ -1,0 +1,99 @@
+{
+  "rabbit_version": "3.8.9",
+  "users": [
+	{
+	  "name": "guest",
+	  "password_hash": "kI3GCmpTS3+aNtx9d7AOtvL80DYT2RIS1hxnD50iNaPR3r0H",
+	  "tags": "administrator"
+	}
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "cluster_name",
+      "value": "rabbit@saga-microservices-rabbit"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "ORDER_CREATED_QUEUE",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "ORDER_CANCELED_QUEUE",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "REFUND_PAYMENT_QUEUE",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "ORDER_DONE_QUEUE",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "BILLED_ORDER_QUEUE",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "ORDER_CANCELED_EXCHANGE",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "ORDER_CANCELED_EXCHANGE",
+      "vhost": "/",
+      "destination": "ORDER_CANCELED_QUEUE",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "ORDER_CANCELED_EXCHANGE",
+      "vhost": "/",
+      "destination": "REFUND_PAYMENT_QUEUE",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}

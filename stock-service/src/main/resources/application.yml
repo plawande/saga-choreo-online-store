@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: stock-service
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/choreostorestockdb
+    username: root
+    password: Test1234
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: rabbit$_$123
+
+---
+
+server:
+  port: 8083
+
+---
+
+logging:
+  level:
+    com.sample.stock: debug
+
+---
+
+queue:
+  billed-order: BILLED_ORDER_QUEUE
+  order-done: ORDER_DONE_QUEUE
+exchange:
+  order-canceled: ORDER_CANCELED_EXCHANGE
