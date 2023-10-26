@@ -2,9 +2,9 @@ package com.sample.order.event.listener;
 
 import com.sample.order.event.type.OrderCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
@@ -14,20 +14,18 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Component
 public class OrderEventListener {
 
-    @Value("${queue.order-create}")
-    private String orderCreatedQueue;
+    @Value("${topic.order-create}")
+    private String orderCreatedTopic;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onCreateEvent(OrderCreatedEvent event) {
-        log.debug("Sending order created event to {}, event: {}", orderCreatedQueue, event);
-        rabbitTemplate.convertAndSend(orderCreatedQueue, event);
+        log.debug("Sending order created event to {}, event: {}", orderCreatedTopic, event);
+        kafkaTemplate.send(orderCreatedTopic, event);
     }
 }
 
 //@Async makes sure that the Listener event doesn't happen in the same thread as that of @Transactional
-//Here it's using the default direct exchange where queue name is same as routing-key
-//https://www.rabbitmq.com/tutorials/amqp-concepts.html#:~:text=The%20default%20exchange%20is%20a,same%20as%20the%20queue%20name.
