@@ -6,7 +6,7 @@ import com.sample.payment.service.PaymentService;
 import com.sample.payment.util.TransactionIdHolder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -17,7 +17,7 @@ public class OrderCreatedEventHandler {
     private TransactionIdHolder transactionIdHolder;
     private PaymentService paymentService;
 
-    @RabbitListener(queues = "${queue.order-create}")
+    @KafkaListener(topics = "${topic.order-create}", groupId = "${group.order-create}")
     public void handle(OrderCreatedEvent event) {
         log.debug("Handling a created order event {}", event);
         transactionIdHolder.setCurrentTransactionId(event.getTransactionId());
