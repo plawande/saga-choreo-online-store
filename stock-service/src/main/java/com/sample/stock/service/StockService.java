@@ -3,6 +3,7 @@ package com.sample.stock.service;
 import com.sample.stock.entity.Product;
 import com.sample.stock.event.type.OrderCanceledEvent;
 import com.sample.stock.event.type.OrderDoneEvent;
+import com.sample.stock.event.type.RefundPaymentEvent;
 import com.sample.stock.exception.StockException;
 import com.sample.stock.model.Order;
 import com.sample.stock.repository.StockRepository;
@@ -35,11 +36,10 @@ public class StockService {
 
     private Product getProduct(Order order) {
         Optional<Product> productOptional = stockRepository.findById(order.getProductId());
-        Product product = productOptional.orElseThrow(() -> {
+        return productOptional.orElseThrow(() -> {
             publishOrderCanceled(order);
-            throw new StockException("Cannot find product "+ order.getProductId());
+            return new StockException("Cannot find product " + order.getProductId());
         });
-        return product;
     }
 
     private void checkStock(Order order, Product product) {
@@ -65,7 +65,10 @@ public class StockService {
     private void publishOrderCanceled(Order order) {
         String transactionId = transactionIdHolder.getCurrentTransactionId();
         OrderCanceledEvent event = new OrderCanceledEvent(transactionId, order);
-        log.debug("Publishing order done event {}", event);
+        log.debug("Publishing order canceled event {}", event);
         publisher.publishEvent(event);
+        RefundPaymentEvent refundPaymentEvent = new RefundPaymentEvent(transactionId, order);
+        log.debug("Publishing refund payment event {}", event);
+        publisher.publishEvent(refundPaymentEvent);
     }
 }

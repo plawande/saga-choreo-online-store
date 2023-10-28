@@ -22,7 +22,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.sample.order.event.type");
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.sample.payment.event.type, com.sample.stock.event.type");
         return props;
     }
 

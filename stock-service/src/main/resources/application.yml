@@ -8,16 +8,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
     url: jdbc:mysql://localhost:3306/choreostorestockdb
     username: root
-    password: Test1234
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: rabbit$_$123
+    password: Test$_$123
 
 ---
 
@@ -32,8 +27,10 @@ logging:
 
 ---
 
-queue:
-  billed-order: BILLED_ORDER_QUEUE
-  order-done: ORDER_DONE_QUEUE
-exchange:
-  order-canceled: ORDER_CANCELED_EXCHANGE
+topic:
+  billed-order: order-billed-topic
+  order-done: order-done-topic
+  refund-payment: refund-payment-topic
+  order-canceled: order-cancelled-topic
+group:
+  billed-order: order-billed-group

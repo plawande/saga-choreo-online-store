@@ -42,7 +42,6 @@ public class PaymentService {
         Boolean confirm = true;
         if(confirm) {
             log.debug("Charge confirmed for order id {}", order.getId());
-            return;
         }else {
             publishOrderCanceled(order);
             throw new PaymentException("No sufficient balance in account for order "+order.getId());
