@@ -1,7 +1,7 @@
 package com.sample.order.service;
 
 import com.sample.order.entity.Order;
-import com.sample.order.event.type.OrderCreatedEvent;
+import com.sample.common.event.type.OrderCreatedEvent;
 import com.sample.order.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +30,19 @@ public class OrderService {
     }
 
     private void publishOrderCreated(Order order) {
-        OrderCreatedEvent event = new OrderCreatedEvent(UUID.randomUUID().toString(), order);
+        com.sample.common.model.Order orderDto = mapEntityToDto(order);
+        OrderCreatedEvent event = new OrderCreatedEvent(UUID.randomUUID().toString(), orderDto);
         log.debug("Publishing an order created event {}", event);
         publisher.publishEvent(event);
+    }
+
+    private com.sample.common.model.Order mapEntityToDto(Order order) {
+        com.sample.common.model.Order orderDto = new com.sample.common.model.Order();
+        orderDto.setId(order.getId());
+        orderDto.setProductId(order.getProductId());
+        orderDto.setValue(order.getValue());
+        orderDto.setQuantity(order.getQuantity());
+        return orderDto;
     }
 
     @Transactional

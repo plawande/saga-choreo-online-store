@@ -1,6 +1,6 @@
 package com.sample.payment.event.handler;
 
-import com.sample.payment.event.type.RefundPaymentEvent;
+import com.sample.common.event.type.RefundPaymentEvent;
 import com.sample.payment.service.PaymentService;
 import com.sample.payment.util.TransactionIdHolder;
 import lombok.AllArgsConstructor;

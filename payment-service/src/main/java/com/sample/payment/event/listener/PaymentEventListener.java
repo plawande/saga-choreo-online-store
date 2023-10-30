@@ -1,7 +1,7 @@
 package com.sample.payment.event.listener;
 
-import com.sample.payment.event.type.BilledOrderEvent;
-import com.sample.payment.event.type.OrderCanceledEvent;
+import com.sample.common.event.type.BilledOrderEvent;
+import com.sample.common.event.type.OrderCanceledEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
 package com.sample.stock.event.handler;
 
-import com.sample.stock.event.type.BilledOrderEvent;
+import com.sample.common.event.type.BilledOrderEvent;
 import com.sample.stock.exception.StockException;
 import com.sample.stock.service.StockService;
 import com.sample.stock.util.TransactionIdHolder;

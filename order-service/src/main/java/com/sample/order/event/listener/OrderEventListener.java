@@ -1,6 +1,6 @@
 package com.sample.order.event.listener;
 
-import com.sample.order.event.type.OrderCreatedEvent;
+import com.sample.common.event.type.OrderCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

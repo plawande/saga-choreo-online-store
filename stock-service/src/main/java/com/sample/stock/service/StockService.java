@@ -1,11 +1,11 @@
 package com.sample.stock.service;
 
+import com.sample.common.model.Order;
 import com.sample.stock.entity.Product;
-import com.sample.stock.event.type.OrderCanceledEvent;
-import com.sample.stock.event.type.OrderDoneEvent;
-import com.sample.stock.event.type.RefundPaymentEvent;
+import com.sample.common.event.type.OrderCanceledEvent;
+import com.sample.common.event.type.OrderDoneEvent;
+import com.sample.common.event.type.RefundPaymentEvent;
 import com.sample.stock.exception.StockException;
-import com.sample.stock.model.Order;
 import com.sample.stock.repository.StockRepository;
 import com.sample.stock.util.TransactionIdHolder;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.sample.payment.event.type;
+package com.sample.common.event.type;
 
-import com.sample.payment.model.Order;
+import com.sample.common.model.Order;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class OrderCanceledEvent {
+public class BilledOrderEvent {
 	private String transactionId;
     private Order order;
 }

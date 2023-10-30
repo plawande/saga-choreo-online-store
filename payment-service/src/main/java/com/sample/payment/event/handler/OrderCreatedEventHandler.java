@@ -1,6 +1,6 @@
 package com.sample.payment.event.handler;
 
-import com.sample.payment.event.type.OrderCreatedEvent;
+import com.sample.common.event.type.OrderCreatedEvent;
 import com.sample.payment.exception.PaymentException;
 import com.sample.payment.service.PaymentService;
 import com.sample.payment.util.TransactionIdHolder;

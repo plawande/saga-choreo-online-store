@@ -1,6 +1,6 @@
 package com.sample.order.event.handler;
 
-import com.sample.order.event.type.OrderCanceledEvent;
+import com.sample.common.event.type.OrderCanceledEvent;
 import com.sample.order.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

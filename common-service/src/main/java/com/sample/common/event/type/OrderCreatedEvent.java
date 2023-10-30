@@ -1,6 +1,6 @@
-package com.sample.order.event.type;
+package com.sample.common.event.type;
 
-import com.sample.order.entity.Order;
+import com.sample.common.model.Order;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class OrderDoneEvent {
+public class OrderCreatedEvent {
     private String transactionId;
     private Order order;
 }

@@ -1,10 +1,10 @@
 package com.sample.payment.service;
 
+import com.sample.common.model.Order;
 import com.sample.payment.entity.Payment;
-import com.sample.payment.event.type.BilledOrderEvent;
-import com.sample.payment.event.type.OrderCanceledEvent;
+import com.sample.common.event.type.BilledOrderEvent;
+import com.sample.common.event.type.OrderCanceledEvent;
 import com.sample.payment.exception.PaymentException;
-import com.sample.payment.model.Order;
 import com.sample.payment.repository.PaymentRepository;
 import com.sample.payment.util.TransactionIdHolder;
 import lombok.AllArgsConstructor;

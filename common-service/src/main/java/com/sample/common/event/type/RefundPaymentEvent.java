@@ -1,6 +1,6 @@
-package com.sample.stock.event.type;
+package com.sample.common.event.type;
 
-import com.sample.stock.model.Order;
+import com.sample.common.model.Order;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class BilledOrderEvent {
+public class RefundPaymentEvent {
 	private String transactionId;
     private Order order;
 }
