@@ -1,0 +1,9 @@
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic order-created-topic --partitions 3 --replication-factor 1
+
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic order-billed-topic --partitions 3 --replication-factor 1
+
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic order-done-topic --partitions 3 --replication-factor 1
+
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic order-cancelled-topic --partitions 3 --replication-factor 1
+
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic refund-payment-topic --partitions 3 --replication-factor 1
